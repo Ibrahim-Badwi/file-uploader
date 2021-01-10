@@ -1,4 +1,111 @@
+:root {
+  --main-color: #f6f8fb;
+  --white: #ffffff;
+  --gra-1: #4F4F4F;
+  --gray-2: #828282;
+  --gray-3: #BDBDBD;
+}
+
+body {
+  background-color: var(--main-color);
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
 .container {
-    margin: 10;
-    background-color: #dee8e4;
+  background: var(--white);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  max-width: 400px;
+  height: 470px;
+  text-align: center;
+  padding: 36px 32px;
+}
+
+.container h1 {
+  font-size: 28px;
+  line-height: 27px;
+  color: var(--gra-1);
+}
+
+.container p {
+  font-size: 17px;
+  line-height: 15px;
+  letter-spacing: -0.035em;
+  color: var(--gray-2);
+}
+
+.dragContainer {
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--gray-3);
+  height: 220px;
+  background: #F6F8FB;
+  border: 1px dashed #97BEF4;
+  box-sizing: border-box;
+  border-radius: 12px;
+  margin-top: 30px;
+  padding-top: 40px;
+}
+
+.dragContainer p {
+  font-size: 16px;
+  line-height: 18px;
+  color: var(--gray-3);
+}
+
+.sep {
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.button-wrap {
+  position: relative;
+}
+
+.new-button {
+  width: 100px;
+  height: 32px;
+  background: #2F80ED;
+  border-radius: 8px;
+  /* border: none; */
+
+  font-family: Noto Sans;
+  font-size: 14px;
+  /* font-style: normal; */
+  /* font-weight: 500; */
+  line-height: 32px;
+  letter-spacing: -0.035em;
+  text-align: center;
+  color: var(--white);
+
+  /* border: 1px solid #ccc; */
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  
+  display: inline-block;
+  /* padding: 8px 12px;  */
+  cursor: pointer;
+  /* border-radius: 4px; */
+  font-size: 16px;
+  color: #fff;
+}
+
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 6px;
+  left: 0;
+  font-size: 15px;
+  color: rgb(153,153,153);
+}
+
+.new-button:hover {
+  /* box-shadow: 1px 1px 10px red; */
+  box-shadow: 1px 4px 12px rgba(47, 128, 237, 1);
 }

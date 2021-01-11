@@ -15,6 +15,7 @@ const App = () => {
 
   const handleUpload = (event) => {
     console.log(event.target.files);
+    setFile(event.target.files);
     setUploading(true);
     setTimeout(() => {
       setUploading(false);
@@ -28,7 +29,7 @@ const App = () => {
         : <Upload show={uploading} file/>
       }
       {success && <Done show={uploading} />}
-      {/* <Progress show={!uploading} /> */}
+      {/* <Done show={!uploading} /> */}
     </div>
   );
 };

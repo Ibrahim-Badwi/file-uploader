@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
+import SelectFile from './components/SelectFile';
 import Upload from './components/Upload';
-import Progress from './components/Progress';
 import Done from './components/Done';
 
 
@@ -10,7 +10,7 @@ const App = () => {
   const [uploading, setUploading] = useState(false);
   const [mina, setMain] = useState(true);
   const [success, setSuccess] = useState(false);
-  
+
   const  klass = uploading ? 'sm-container' : 'container';
 
   const handleUpload = (event) => {
@@ -24,10 +24,11 @@ const App = () => {
   return (
     <div className={klass}>
       {!uploading
-        ? <Upload onChange={handleUpload} show={uploading} />
-        : <Progress show={uploading} />
+        ? <SelectFile onSelect={handleUpload} show={uploading} />
+        : <Upload show={uploading} file/>
       }
       {success && <Done show={uploading} />}
+      {/* <Progress show={!uploading} /> */}
     </div>
   );
 };

@@ -7,6 +7,7 @@
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
     "server": "json-server -p3001 --watch db.json",
+    "dev": "nodemon server/app.js",
     "lint": "eslint .",
     "test": "jest --verbose"
   },
@@ -16,6 +17,10 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.7",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",

@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import uploadService from '../services/fileUploadService';
+
 import tickMArk from '../../assets/tick.svg';
 
-const Result = () => {
+const Done = ({ url }) => {
+  const [src, setSrc] = useState('');
+
+  console.log(url, '****************');
+  useEffect(() => {
+    setSrc(url);
+  }, [url]);
+
+  const handleClick = (event) => {
+    console.log(url, '@@@@@@@@@@@');
+  };
+
   return (
     <div className='result'>
       <img className='tick-icon' src={tickMArk} alt='tick-mark' />
       <p>Uploaded Successfully!</p>
-      <img className='uploaded-img' src={require('../../assets/mern-600x200.jpg')} />
+      <img className='uploaded-img' src={src} />
       <div>
-        <input type='text' value='https://www.flaticon.com/free-icon/tick_87932?search-type=icons&k=1610365571354&related_id=87932&origin=search' />
-        <button>Copy Link</button>
+        <input type='text' value={url} readOnly />
+        <button onClick={handleClick}>Copy Link</button>
       </div>
     </div>
-  );
-};
-
-const Done = ({ show }) => {
-  return (
-    <>
-      { show ? <Result /> : null }
-    </>
   );
 };
 

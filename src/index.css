@@ -67,7 +67,7 @@ body {
   position: relative;
 }
 
-.new-button {
+.choose-button {
   width: 100px;
   height: 32px;
   background: #2F80ED;
@@ -105,7 +105,7 @@ input[type="file"] {
   color: rgb(153,153,153);
 }
 
-.new-button:hover,
+.choose-button:hover,
 .result button:hover {
   /* box-shadow: 1px 1px 10px red; */
   box-shadow: 1px 4px 12px rgba(47, 128, 237, 1);

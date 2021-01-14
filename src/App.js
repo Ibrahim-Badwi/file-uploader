@@ -8,7 +8,7 @@ import uploadService from './services/fileUploadService';
 
 
 const App = () => {
-  const [selectedFile, setSelectedFile] = useState('');
+  const [selectedFile, setSelectedFile] = useState(undefined);
   const [uploading, setUploading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [url, setUrl] = useState('');
@@ -16,18 +16,23 @@ const App = () => {
   const  klass = uploading ? 'sm-container' : 'container';
 
   const handleUpload = file => {
-    console.log(file);
+    console.log(file, '********** FILE OBJECT');
     setSelectedFile(file);
+    console.log(selectedFile, '********** SELECTD FILE');
     setUploading(true);
 
     uploadService
-      .uploadFile(setSelectedFile)
+      .uploadFile(selectedFile)
       .then(response => {
         console.log(response);
         setUploading(false);
         // setUrl(response.url);
         setUrl('../../assets/mern-600x200.jpg');
         setSuccess(true);
+      })
+      .catch(err => {
+        console.log('could not upload the file');
+        console.log(err);
       });
   };
 

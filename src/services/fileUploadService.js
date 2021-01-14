@@ -1,6 +1,8 @@
 import http from './http-common';
 
 const uploadFile = file => {
+
+  console.log(file, '##########################');
   let data = new FormData();
 
   data.append('file', file);

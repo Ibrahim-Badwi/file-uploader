@@ -1,18 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import uploadService from '../services/fileUploadService';
+import fileUploadService from '../services/fileUploadService';
 
 import tickMArk from '../../assets/tick.svg';
 
-const Done = ({ url }) => {
+
+const Done = ({ id }) => {
   const [src, setSrc] = useState('');
 
-  console.log(url, '****************');
   useEffect(() => {
-    setSrc(url);
-  }, [url]);
+    fileUploadService
+      .downloadFile(id)
+      .then(response => {
+        // setSrc(`data:image/jpeg;base64,${response.data}`);
+        setSrc(URL.createObjectURL(response.data));
+        console.log(response);
+      });
+
+    setSrc(id);
+  }, []);
 
   const handleClick = (event) => {
-    console.log(url, '@@@@@@@@@@@');
+    navigator.clipboard.writeText(id);
   };
 
   return (
@@ -21,7 +29,7 @@ const Done = ({ url }) => {
       <p>Uploaded Successfully!</p>
       <img className='uploaded-img' src={src} />
       <div>
-        <input type='text' value={url} readOnly />
+        <input type='text' value={id} readOnly />
         <button onClick={handleClick}>Copy Link</button>
       </div>
     </div>

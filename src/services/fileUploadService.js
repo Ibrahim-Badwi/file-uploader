@@ -1,29 +1,23 @@
 import http from './http-common';
 
 const uploadFile = file => {
-
-  console.log(file, '##########################');
   let data = new FormData();
-
   data.append('file', file);
 
-  return http.post('/upload', data, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    }
-  });
+  const headers = {
+    'Content-Type': 'multipart/form-data',
+  };
+
+  return http
+    .post('/upload', data, headers)
+    .then(response => response.data);
 };
 
-const getFiles = () => {
-  return http.get('/files');
-};
-
-const getFile = (id) => {
-  return http.get(`/files/${id}`);
+const downloadFile = (id) => {
+  return http.get(`/download/${id}`, { responseType: 'blob' });
 };
 
 export default {
   uploadFile,
-  getFiles,
-  getFile
+  downloadFile
 };

@@ -1,52 +1,48 @@
 import React, { useState } from 'react';
 
-import SelectFile from './components/SelectFile';
 import Upload from './components/Upload';
+import Progress from './components/Progress';
 import Done from './components/Done';
 
-import uploadService from './services/fileUploadService';
+import fileUploadService from './services/fileUploadService';
 
 
 const App = () => {
   const [selectedFile, setSelectedFile] = useState(undefined);
   const [uploading, setUploading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [url, setUrl] = useState('');
+  const [id, setId] = useState('');
 
   const  klass = uploading ? 'sm-container' : 'container';
 
-  const handleUpload = file => {
-    console.log(file, '********** FILE OBJECT');
-    setSelectedFile(file);
-    console.log(selectedFile, '********** SELECTD FILE');
+  const handleUpload = files => {
+    let currentFile = files[0];
+    const size = Math.round(currentFile.size / (1024*1024));
+
+    if(size >= 2) return;
+
+    setSelectedFile(currentFile);
     setUploading(true);
 
-    uploadService
-      .uploadFile(selectedFile)
-      .then(response => {
-        console.log(response);
+    fileUploadService
+      .uploadFile(currentFile)
+      .then(data => {
+        setId(data.id);
         setUploading(false);
-        // setUrl(response.url);
-        setUrl('../../assets/mern-600x200.jpg');
         setSuccess(true);
       })
       .catch(err => {
         console.log('could not upload the file');
-        console.log(err);
       });
-  };
-
-  const upload = () => {
-
   };
 
   return (
     <div className={klass}>
       {!uploading && !success
-        ? <SelectFile onSelect={handleUpload} show={uploading} />
-        : <Upload show={uploading} file/>
+        ? <Upload onSelect={handleUpload} displayWhen={uploading} />
+        : <Progress displayWhen={uploading} file/>
       }
-      {success && <Done url={url} />}
+      {success && <Done id={id} />}
     </div>
   );
 };

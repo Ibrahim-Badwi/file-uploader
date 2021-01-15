@@ -1,30 +1,28 @@
+/* actual application */
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
-const fileController = require('./controllers/file.controllers');
 
+const fileRouter = require('./controllers/file');
+const middleware = require('./utils/middleware');
 
 global.__basedir = __dirname;
 const app = express();
-// const upload = multer({ dest: './uploads' });
 
+// intercept and parse request before pass it to routres handlers
 app.use(cors());
+// app.use(middleware.uploadFile);
+app.use(middleware.requestLogger);
 
-// app.post('/upload', (request, response) => {
-//   console.log(request, request.body);
+// use router to handle routes
+app.use('/api/files/', fileRouter);
 
-//   setTimeout(() => {
-//     response.send({ message: 'file uploaded succefully', url: 'https://stackoverflow.com/questions/5062614/how-to-decide-when-to-use-node-js?rq=1' });
-//   }, 100);
-// });
-
-app.post('/upload', fileController.upload);
-
-// app.get('/files', controller.getListFiles);
-
-// app.get('/files/:name', controller.download);
+// unknown endpoint and error handler
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
 
 const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`upload service is runing on port ${PORT}`);
 });
+
+module.exports = app;

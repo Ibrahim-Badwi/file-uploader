@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
-    "server": "json-server -p3001 --watch db.json",
+    "server": "node server/index.js",
     "dev": "nodemon server/app.js",
     "lint": "eslint .",
     "test": "jest --verbose"

@@ -8,5 +8,5 @@ const logger = require('./utils/logger');
 const server = http.createServer(app);
 
 server.listen(config.PORT, () => {
-  logger.info(`Upload Service is running on port ${PORT}`);
+  logger.info(`Upload Service is running on port ${config.PORT}`);
 });

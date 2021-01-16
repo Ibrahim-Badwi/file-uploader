@@ -4,24 +4,23 @@ import fileUploadService from '../services/fileUploadService';
 import tickMArk from '../../assets/tick.svg';
 
 
-const Done = ({ id }) => {
+const Done = ({ url }) => {
   const [src, setSrc] = useState('');
   const [notification, setNotification]  = useState({});
 
   useEffect(() => {
     fileUploadService
-      .downloadFile(id)
+      .downloadFile(url)
       .then(response => {
         // setSrc(`data:image/jpeg;base64,${response.data}`);
         setSrc(URL.createObjectURL(response.data));
       });
 
-    setSrc(id);
+    setSrc(url);
   }, []);
 
   const handleClick = (event) => {
-    console.log('click', '*********************');
-    navigator.clipboard.writeText(id);
+    navigator.clipboard.writeText(url);
     setNotification({
       message: 'link copied to clipboard',
       style: { color: 'blue' }
@@ -39,7 +38,7 @@ const Done = ({ id }) => {
         <p>Uploaded Successfully!</p>
         <img className='uploaded-img' src={src} />
         <div className='copy-container'>
-          <input type='text' value={id} readOnly />
+          <input type='text' value={url} readOnly />
           <button onClick={handleClick}>Copy Link</button>
         </div>
       </div>

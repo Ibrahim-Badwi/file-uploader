@@ -7,7 +7,7 @@
     "start": "webpack serve --mode=development",
     "build": "webpack --mode=production",
     "server": "node server/index.js",
-    "dev": "nodemon server/app.js",
+    "dev": "nodemon server/index.js",
     "lint": "eslint .",
     "test": "jest --verbose"
   },

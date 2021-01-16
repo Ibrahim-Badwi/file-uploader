@@ -11,7 +11,8 @@ const App = () => {
   const [selectedFile, setSelectedFile] = useState(undefined);
   const [uploading, setUploading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [id, setId] = useState('');
+  const [url, setUrl] = useState('');
+  const [notification, setNotification]  = useState({});
 
   const  klass = uploading ? 'sm-container' : 'container';
 
@@ -19,7 +20,17 @@ const App = () => {
     let currentFile = files[0];
     const size = Math.round(currentFile.size / (1024*1024));
 
-    if(size >= 2) return;
+    if(size >= 2) {
+      setNotification({
+        message: 'File size cannot be larger than 2MB!',
+        style: { color: 'red' }
+      });
+
+      setTimeout(() => {
+        setNotification({});
+      }, 2500);
+      return;
+    }
 
     setSelectedFile(currentFile);
     setUploading(true);
@@ -27,7 +38,7 @@ const App = () => {
     fileUploadService
       .uploadFile(currentFile)
       .then(data => {
-        setId(data.id);
+        setUrl(data.url);
         setUploading(false);
         setSuccess(true);
       })
@@ -42,7 +53,9 @@ const App = () => {
         ? <Upload onSelect={handleUpload} displayWhen={uploading} />
         : <Progress displayWhen={uploading} file/>
       }
-      {success && <Done id={id} />}
+      {success && <Done url={url} />}
+
+      <p className='message' style={notification.style}>{notification.message}</p>
     </div>
   );
 };

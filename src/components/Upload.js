@@ -15,7 +15,7 @@ const Upload = ({ onSelect }) => {
   return (
     <>
       <div>
-        <h1>Upload your image</h1>
+        <h1 className='header-title'>Upload your image</h1>
         <p className='header-p'>File should be Jpeg, Png,...</p>
       </div>
 
@@ -32,8 +32,8 @@ const Upload = ({ onSelect }) => {
       </Dropzone>
 
       <p className='sep'>Or</p>
-      <div className='button-wrap'>
-        <label className='choose-button' htmlFor='upload'>Choose a file</label>
+      <div className='button-container'>
+        <label className='button-label' htmlFor='upload'>Choose a file</label>
         <input
           id='upload'
           type='file'

@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Progress = ({ show }) => {
+const Progress = ({ displayWhen: display }) => {
   return (
     <>
-      {show
+      {display
         ?
         <>
-          <p className='upload-p'>Uploading...</p>
+          <p className='progress-p'>Uploading...</p>
           <div className='progress-bar'>
             <div className='filler'></div>
           </div>

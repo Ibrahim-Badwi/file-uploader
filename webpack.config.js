@@ -5,8 +5,8 @@ const config = (env, argv) => {
   console.log('argv', argv.mode);
 
   const backend_url = argv.mode === 'production'
-    ? 'https://blooming-atoll-75500.herokuapp.com/api/notes'
-    : 'http://localhost:3001/api/notes';
+    ? 'https://file-uploader-0.herokuapp.com/'
+    : 'http://localhost:3001/api/files';
 
   return {
     entry: ['@babel/polyfill', './src/index.js'],

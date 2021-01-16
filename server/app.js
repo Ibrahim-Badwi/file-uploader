@@ -22,9 +22,5 @@ app.use('/api/files/', fileRouter);
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
-const PORT = 8080;
-app.listen(PORT, () => {
-  console.log(`upload service is runing on port ${PORT}`);
-});
 
 module.exports = app;

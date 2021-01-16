@@ -24,6 +24,7 @@ body {
   text-align: center;
   padding: 20px 30px 10px 30px;
   margin: 0 auto;
+  margin-bottom: 30px;
 }
 
 .header-title {
@@ -115,7 +116,7 @@ input[type="file"] {
   text-align: center;
   padding: 30px 30px;
   height: 145px;
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
   margin-top: 20%;
 }
@@ -197,7 +198,7 @@ input[type="file"] {
   height: 100%;
   width: 24%;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   background: #2F80ED;
   border-radius: 8px;
   border: none;
@@ -205,4 +206,27 @@ input[type="file"] {
   font-family: Poppins;
   font-size: 11px;
   text-align: center;
+}
+
+@media (max-width: 300px) {
+  body {
+    /* font-size: 14px; */
+  }
+
+  .container {
+    padding-bottom: 70px;
+  }
+
+  .copy-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+  }
+
+  .copy-container button{
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+  }
 }

@@ -11,7 +11,7 @@ const uploadFile = file => {
   return http
     .post('/upload', data, headers)
     .then(response => response.data)
-    .catch(error => console.log(error, '***************'));
+    .catch(error => console.log(error));
 };
 
 const downloadFile = (id) => {

@@ -1,3 +1,4 @@
+const path = require('path');
 const fileRouter = require('express').Router();
 const uploadFileMiddleware = require('../middleware/upload');
 

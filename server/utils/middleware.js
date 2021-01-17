@@ -21,10 +21,6 @@ const errorHandler = (error, request, response, next) => {
     return response.status(500).send({
       message: 'File size cannot be larger than 2MB!',
     });
-  } else {
-    return response.status(500).send({
-      message: `Could not upload the file: ${error}`,
-    });
   }
   // next(error);
 };

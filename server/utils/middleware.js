@@ -8,6 +8,7 @@ const requestLogger = (request, response, next) => {
   logger.info('---');
   next();
 };
+
 const unknownEndpoint = (request, response) => {
   return response.status(404).send({ error: 'unknown endpoint' });
 };
@@ -22,7 +23,7 @@ const errorHandler = (error, request, response, next) => {
       message: 'File size cannot be larger than 2MB!',
     });
   }
-  // next(error);
+  next(error);
 };
 
 module.exports = {

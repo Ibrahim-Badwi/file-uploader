@@ -23,7 +23,6 @@ const errorHandler = (error, request, response, next) => {
       message: 'File size cannot be larger than 2MB!',
     });
   }
-  next(error);
 };
 
 module.exports = {

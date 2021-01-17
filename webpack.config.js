@@ -20,7 +20,7 @@ const config = (env, argv) => {
       port: 3000,
       hot: true
     },
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     module: {
       rules: [
         {

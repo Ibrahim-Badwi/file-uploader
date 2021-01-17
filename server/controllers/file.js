@@ -1,6 +1,7 @@
 const path = require('path');
 const fileRouter = require('express').Router();
 const uploadFileMiddleware = require('../middleware/upload');
+const logger = require('../utils/logger');
 
 
 fileRouter.post('/upload', async (request, response, next) => {
@@ -19,8 +20,8 @@ fileRouter.post('/upload', async (request, response, next) => {
       url: fullUrl
     });
   } catch (error) {
-    next(error);
-    console.log(error);
+    logger.error(error);
+    // next(error);
   }
 });
 

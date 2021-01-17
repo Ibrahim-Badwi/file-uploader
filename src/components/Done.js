@@ -13,11 +13,14 @@ const Done = ({ url }) => {
       .downloadFile(url)
       .then(response => {
         // setSrc(`data:image/jpeg;base64,${response.data}`);
+        // setSrc(url);
         setSrc(URL.createObjectURL(response.data));
+      })
+      .catch(error => {
+        console.log('Could not download the file');
+        console.log(url);
       });
-
-    setSrc(url);
-  }, []);
+  }, [url]);
 
   const handleClick = (event) => {
     navigator.clipboard.writeText(url);

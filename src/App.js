@@ -43,6 +43,7 @@ const App = () => {
         setSuccess(true);
       })
       .catch(err => {
+        console.log(err);
         console.log('could not upload the file');
       });
   };

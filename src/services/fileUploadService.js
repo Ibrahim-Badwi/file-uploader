@@ -10,11 +10,12 @@ const uploadFile = file => {
 
   return http
     .post('/upload', data, headers)
-    .then(response => response.data);
+    .then(response => response.data)
+    .catch(error => console.log(error, '***************'));
 };
 
 const downloadFile = (id) => {
-  return http.get(`/download/${id}`, { responseType: 'blob' });
+  return http.get(id, { responseType: 'blob' });
 };
 
 export default {

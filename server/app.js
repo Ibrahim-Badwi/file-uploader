@@ -13,7 +13,6 @@ const app = express();
 app.use(cors());
 // app.use(middleware.uploadFile);
 app.use(middleware.requestLogger);
-app.use(express.static(path.join(__dirname, '../dist')));
 
 // use router to handle routes
 app.use('/api/files/', fileRouter);

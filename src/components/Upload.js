@@ -38,7 +38,7 @@ const Upload = ({ onSelect }) => {
           id='upload'
           type='file'
           encType="multipart/form-data"
-          accept='.png,.jpeg,.svg,.gif'
+          accept='.png,.jpg,.jpeg,.svg,.gif'
           onChange={acceptedFiles => handleSelect(acceptedFiles)}
         />
       </div>

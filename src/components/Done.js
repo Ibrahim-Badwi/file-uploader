@@ -8,9 +8,16 @@ const Done = ({ url }) => {
   const [src, setSrc] = useState('');
   const [notification, setNotification]  = useState({});
 
+  let path = undefined;
+  if (process.env.NODE_ENV === 'production') {
+    path = url;
+  } else {
+    path = new URL(url).pathname;
+  }
+
   useEffect(() => {
     fileUploadService
-      .downloadFile(url)
+      .downloadFile(path)
       .then(response => {
         // setSrc(`data:image/jpeg;base64,${response.data}`);
         // setSrc(url);
@@ -18,7 +25,7 @@ const Done = ({ url }) => {
       })
       .catch(error => {
         console.log('Could not download the file');
-        console.log(url);
+        console.log(error);
       });
   }, [url]);
 

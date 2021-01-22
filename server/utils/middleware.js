@@ -1,4 +1,3 @@
-const uploadFile = require('../middleware/upload');
 const logger = require('../utils/logger');
 
 const requestLogger = (request, response, next) => {
@@ -27,7 +26,6 @@ const errorHandler = (error, request, response, next) => {
 
 module.exports = {
   requestLogger,
-  uploadFile,
   unknownEndpoint,
   errorHandler
 };

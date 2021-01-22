@@ -1,28 +1,19 @@
-const path = require('path');
 const fileRouter = require('express').Router();
-const uploadFileMiddleware = require('../middleware/upload');
+const multer = require('multer');
+const { Storage } = require('@google-cloud/storage');
+const { fileBuffer, fileValidator, fileUploader } = require('../utils/uploader');
 const logger = require('../utils/logger');
 
 
-fileRouter.post('/upload', async (request, response, next) => {
-  try {
-    await uploadFileMiddleware(request, response);
-
-    if (request.file === undefined) {
-      return response.status(400).send({ message: 'Please upload a file!' });
+fileRouter.post('/upload',
+  fileBuffer,
+  async (request, response, next) => {
+    try {
+      fileValidator(request, response, next);
+      fileUploader(request, response, next);
+    } catch (error) {
+      next(error);
     }
-
-    const fullUrl =
-      request.protocol + '://' + request.get('host') + '/api/files/download/' + request.file.filename;
-
-    return response.status(200).send({
-      message: 'Uploaded the file successfully: ' + request.file.filename,
-      url: fullUrl
-    });
-  } catch (error) {
-    logger.error(error);
-    // next(error);
-  }
 });
 
 fileRouter.get('/download/:id', async (request, response, next) => {

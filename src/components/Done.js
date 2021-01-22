@@ -14,19 +14,21 @@ const Done = ({ url }) => {
   } else {
     path = new URL(url).pathname;
   }
-
+  
   useEffect(() => {
-    fileUploadService
-      .downloadFile(path)
-      .then(response => {
-        // setSrc(`data:image/jpeg;base64,${response.data}`);
-        // setSrc(url);
-        setSrc(URL.createObjectURL(response.data));
-      })
-      .catch(error => {
-        console.log('Could not download the file');
-        console.log(error);
-      });
+    // fileUploadService
+    //   .downloadFile(path)
+    //   .then(response => {
+    //     // setSrc(`data:image/jpeg;base64,${response.data}`);
+    //     // setSrc(url);
+    //     setSrc(URL.createObjectURL(response.data));
+    //   })
+    //   .catch(error => {
+    //     console.log('Could not download the file');
+    //     console.log(error);
+    //   });
+    setSrc(url);
+    // setSrc(URL.createObjectURL(response.data));
   }, [url]);
 
   const handleClick = (event) => {

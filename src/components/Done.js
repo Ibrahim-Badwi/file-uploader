@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import fileUploadService from '../services/fileUploadService';
 
 import tickMArk from '../../assets/tick.svg';
 
@@ -7,28 +6,9 @@ import tickMArk from '../../assets/tick.svg';
 const Done = ({ url }) => {
   const [src, setSrc] = useState('');
   const [notification, setNotification]  = useState({});
-
-  let path = undefined;
-  if (process.env.NODE_ENV === 'production') {
-    path = url;
-  } else {
-    path = new URL(url).pathname;
-  }
   
   useEffect(() => {
-    // fileUploadService
-    //   .downloadFile(path)
-    //   .then(response => {
-    //     // setSrc(`data:image/jpeg;base64,${response.data}`);
-    //     // setSrc(url);
-    //     setSrc(URL.createObjectURL(response.data));
-    //   })
-    //   .catch(error => {
-    //     console.log('Could not download the file');
-    //     console.log(error);
-    //   });
     setSrc(url);
-    // setSrc(URL.createObjectURL(response.data));
   }, [url]);
 
   const handleClick = (event) => {

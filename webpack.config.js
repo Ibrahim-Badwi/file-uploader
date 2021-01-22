@@ -5,7 +5,7 @@ const config = (env, argv) => {
   console.log('argv', argv.mode);
 
   const backend_url = argv.mode === 'production'
-    ? '/api/files'
+    ? 'https://firebasestorage.googleapis.com/api/files'
     : 'http://localhost:3001/api/files';
 
   return {

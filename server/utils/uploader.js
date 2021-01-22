@@ -31,13 +31,12 @@ const fileValidator = (request, response, next) => {
 
 // upload our file to cloud
 const fileUploader = (request, response, next) => {
-  console.log('i am here');
   //  initiate a Storage instance with firebase credentials
   const storage = new Storage({
     projectId: process.env.GCLOUD_PROJECT_ID,
     keyFilename: process.env.GCLOUD_APPLICATION_CREDENTIALS
   });
-  console.log('i am here 2');
+
   // create a container for objects (files)
   const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET_URL);
 
@@ -52,7 +51,7 @@ const fileUploader = (request, response, next) => {
       contentType: request.file.mimetype,
     },
   });
-  console.log('i am here3');
+
   // check for events
   stream.on('error', (error) => next(error));
   stream.on('finish', () => {
@@ -60,8 +59,6 @@ const fileUploader = (request, response, next) => {
       bucket.name
     }/o/${encodeURI(blob.name)}?alt=media`;
 
-    console.log(url);
-    console.log('i am here4');
     return response
       .status(200)
       .send({ fileName: request.file.originalname, fileLocation: url });

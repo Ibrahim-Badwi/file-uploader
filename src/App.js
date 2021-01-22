@@ -39,7 +39,6 @@ const App = () => {
       .uploadFile(currentFile)
       .then(data => {
         setUrl(data.fileLocation);
-        console.log(data.fileLocation, '****************');
         setUploading(false);
         setSuccess(true);
       })

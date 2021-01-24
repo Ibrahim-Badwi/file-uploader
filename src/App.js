@@ -35,6 +35,8 @@ const App = () => {
     setSelectedFile(currentFile);
     setUploading(true);
 
+    console.log('upload to: ', BACKEND_URL);
+
     fileUploadService
       .uploadFile(currentFile)
       .then(data => {
